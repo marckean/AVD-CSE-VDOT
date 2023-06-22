@@ -3,10 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "Location": {
-            "value": ""
+            "value": "australiaeast"
         },
         "NamePrefix": {
-            "value": ""
+            "value": "SH"
         },
         "NumberOfVms": {
             "value": 1
