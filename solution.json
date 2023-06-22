@@ -3,23 +3,29 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "Location": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "australiaeast"
     },
     "NamePrefix": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "SH"
     },
     "NumberOfVms": {
-      "type": "int"
+      "type": "int",
+      "defaultValue": 1
     },
     "ScriptUri": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": ""
+      
     },
     "Timestamp": {
       "type": "string",
       "defaultValue": "[utcNow('yyyyMMddhhmmss')]"
     },
     "VirtualMachineIndex": {
-      "type": "int"
+      "type": "int",
+      "defaultValue": 0
     }
   },
   "resources": [
