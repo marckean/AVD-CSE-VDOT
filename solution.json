@@ -16,7 +16,7 @@
     },
     "ScriptUri": {
       "type": "string",
-      "defaultValue": ""
+      "defaultValue": "https://raw.githubusercontent.com/marckean/AVD-CSE-VDOT/main/script.ps1"
       
     },
     "Timestamp": {
