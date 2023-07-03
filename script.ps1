@@ -1,5 +1,19 @@
-$policy = "AppLockerPolicy.xml"
-Set-AppLockerPolicy -XMLPolicy "$path\$policy"
+##############################################################
+#  AppLocker configuration
+##############################################################
+# Block %SYSTEM32%\Taskmgr.exe for BUILTIN\Users
+$path = "$env:TEMP\AppLocker"
+$policyName = "AppLockerPolicy.xml"
+$policyPath = "https://raw.githubusercontent.com/marckean/AVD-CSE-VDOT/main/$policyName"
+
+if(!(Test-Path "$env:TEMP\AppLocker")){New-Item -Path $path -ItemType Directory}
+Start-BitsTransfer -Source $policyPath -Destination $path
+Set-AppLockerPolicy -XMLPolicy "$path\$policyName"
+
+##############################################################
+#  Set the AppLocker service to auto
+##############################################################
+sc.exe config appidsvc start= auto
  
 ##############################################################
 #  Run the Virtual Desktop Optimization Tool (VDOT)
