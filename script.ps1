@@ -1,4 +1,7 @@
-﻿##############################################################
+$policy = "AppLockerPolicy.xml"
+Set-AppLockerPolicy -XMLPolicy "$path\$policy"
+ 
+##############################################################
 #  Run the Virtual Desktop Optimization Tool (VDOT)
 ##############################################################
 # https://github.com/The-Virtual-Desktop-Team/Virtual-Desktop-Optimization-Tool
