@@ -14,7 +14,12 @@ Set-AppLockerPolicy -XMLPolicy "$path\$policyName"
 #  Set the AppLocker service to auto
 ##############################################################
 sc.exe config appidsvc start= auto
- 
+
+##############################################################
+#  Remote Desktop Session Host > Session Time Limits
+##############################################################
+Set-ItemProperty "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name MaxDisconnectionTime -Type 'DWord' -Value 300000 -force
+
 ##############################################################
 #  Run the Virtual Desktop Optimization Tool (VDOT)
 ##############################################################
