@@ -18,6 +18,7 @@ sc.exe config appidsvc start= auto
 ##############################################################
 #  Remote Desktop Session Host > Session Time Limits
 ##############################################################
+# Set to 15 minutes
 Set-ItemProperty "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name MaxDisconnectionTime -Type 'DWord' -Value 300000 -force
 
 ##############################################################
