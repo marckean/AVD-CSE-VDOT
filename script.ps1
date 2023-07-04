@@ -22,6 +22,11 @@ sc.exe config appidsvc start= auto
 Set-ItemProperty "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name MaxDisconnectionTime -Type 'DWord' -Value 300000 -force
 
 ##############################################################
+#  Local Security Group
+##############################################################
+net localgroup /add "AVD Users"
+
+##############################################################
 #  Run the Virtual Desktop Optimization Tool (VDOT)
 ##############################################################
 # https://github.com/The-Virtual-Desktop-Team/Virtual-Desktop-Optimization-Tool
