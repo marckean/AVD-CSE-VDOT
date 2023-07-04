@@ -13,7 +13,7 @@ Set-AppLockerPolicy -XMLPolicy "$path\$policyName"
 ##############################################################
 #  Set the AppLocker service to auto
 ##############################################################
-sc.exe config appidsvc start= auto
+sc.exe config appidsvc start=auto
 
 ##############################################################
 #  Remote Desktop Session Host > Session Time Limits
