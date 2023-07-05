@@ -1,4 +1,9 @@
 ##############################################################
+#  Local Security Group
+##############################################################
+net localgroup /add "AVD Users"
+
+##############################################################
 #  AppLocker configuration
 ##############################################################
 # Block %SYSTEM32%\Taskmgr.exe for BUILTIN\Users
@@ -20,11 +25,6 @@ sc.exe config appidsvc start=auto
 ##############################################################
 # Set to 15 minutes
 Set-ItemProperty "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name MaxDisconnectionTime -Type 'DWord' -Value 300000 -force
-
-##############################################################
-#  Local Security Group
-##############################################################
-net localgroup /add "AVD Users"
 
 ##############################################################
 #  Run the Virtual Desktop Optimization Tool (VDOT)
