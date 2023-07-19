@@ -1,4 +1,26 @@
 $repo = "raw.githubusercontent.com/marckean/AVD-CSE-VDOT/main"
+$storageConnectionString = 'DefaultEndpointsProtocol=https;AccountName=20230710afpstg;AccountKey=RGxWBYsmFdGp7RhGeET2+X67T/cz3xno28CnTy2E6yeraSPMVr87ehYIoIsWHhD84lWToRVRAK1S+ASteV2Nzg==;EndpointSuffix=core.windows.net'
+##############################################################
+#  FSLogix setup CCDLocations
+##############################################################
+Write-Host 'Configuring FSLogix'
+
+New-Item -Path 'HKLM:\SOFTWARE' -Name 'FSLogix' -ErrorAction Ignore
+New-Item -Path 'HKLM:\SOFTWARE\FSLogix' -Name 'Profiles' -ErrorAction Ignore
+New-ItemProperty -Path 'HKLM:\SOFTWARE\FSLogix\Profiles' -Name 'Enabled' -Value 1 -Force
+& 'C:\Program Files\FSLogix\Apps\frx.exe' add-secure-key -key fslstgacct001-CS1 -value $storageConnectionString
+New-ItemProperty -Path HKLM:\SOFTWARE\FSLogix\Profiles\ -Name CCDLocations -PropertyType multistring -Value ('type=azure,name="AZURE PROVIDER 1",connectionString="|fslogix/fslstgacct001-CS1|"') -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\FSLogix\Profiles' -Name 'ClearCacheOnLogoff' -Value 1 -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\FSLogix\Profiles' -Name 'DeleteLocalProfileWhenVHDShouldApply' -Value 1 -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\FSLogix\Profiles' -Name 'FlipFlopProfileDirectoryName' -Value 1 -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\FSLogix\Profiles' -Name 'HealthyProvidersRequiredForRegister' -Value 1 -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\FSLogix\Profiles' -Name 'LockedRetryCount' -Value 3 -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\FSLogix\Profiles' -Name 'LockedRetryInterval' -Value 15 -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\FSLogix\Profiles' -Name 'ProfileType' -Value 0 -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\FSLogix\Profiles' -Name 'ReAttachIntervalSeconds' -Value 15 -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\FSLogix\Profiles' -Name 'ReAttachRetryCount' -Value 3 -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\FSLogix\Profiles' -Name 'SizeInMBs' -Value 30000 -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\FSLogix\Profiles' -Name 'VolumeType' -Value 'VHDX' -Force
 
 ##############################################################
 #  AppLocker configuration
