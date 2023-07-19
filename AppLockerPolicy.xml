@@ -9,6 +9,7 @@
             <Exceptions>
                 <FilePathCondition Path="%OSDRIVE%\ProgramData\Microsoft\Windows\AppRepository\*" />
                 <FilePathCondition Path="%PROGRAMFILES%\FSLogix\*" />
+                <FilePathCondition Path="%PROGRAMFILES%\Microsoft Intune Management Extension\*" />
                 <FilePathCondition Path="%PROGRAMFILES%\Microsoft RDInfra\*" />
                 <FilePathCondition Path="%PROGRAMFILES%\signal-desktop\*" />
                 <FilePathCondition Path="%PROGRAMFILES%\WindowsApps*" />
