@@ -19,6 +19,7 @@
                 <FilePathCondition Path="%SYSTEM32%\sc.exe" />
                 <FilePathCondition Path="%SYSTEM32%\auditpol.exe" />
                 <FilePathCondition Path="%SYSTEM32%\secedit.exe" />
+                <FilePathCondition Path="%SYSTEM32%\secpol.msc" />
                 <FilePathCondition Path="%SYSTEM32%\dwm.exe" />
                 <FilePathCondition Path="%SYSTEM32%\lsass.exe" />
                 <FilePathCondition Path="%SYSTEM32%\mobsync.exe" />
