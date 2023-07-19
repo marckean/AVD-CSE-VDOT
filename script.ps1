@@ -14,7 +14,7 @@ Start-BitsTransfer -Source $policyPath -Destination $path
 Set-AppLockerPolicy -XMLPolicy "$path\$policyName"
 
 ##############################################################
-#  LGPO.exe - Import and apply policy settings
+#  LGPO.exe - Download the tool
 ##############################################################
 $path = "$env:SystemRoot\System32"
 Start-BitsTransfer -Source "https://$repo/LGPO.exe" -Destination $path
