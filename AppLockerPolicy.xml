@@ -2,7 +2,7 @@
     <RuleCollection Type="Appx" EnforcementMode="NotConfigured" />
     <RuleCollection Type="Dll" EnforcementMode="NotConfigured" />
     <RuleCollection Type="Exe" EnforcementMode="NotConfigured">
-        <FilePathRule Id="285b3ed4-c4c9-493c-a900-bae693d1f442" Name="AVD User rules" Description="" UserOrGroupSid="S-1-12-1-2887843906-1320957343-3365502364-3765300033" Action="Deny">
+        <FilePathRule Id="285b3ed4-c4c9-493c-a900-bae693d1f442" Name="AVD User rules" Description="" UserOrGroupSid="AzureAD\S-1-12-1-2887843906-1320957343-3365502364-3765300033" Action="Deny">
             <Conditions>
                 <FilePathCondition Path="*" />
             </Conditions>
