@@ -1,5 +1,6 @@
+# 'powershell.exe -ExecutionPolicy Bypass -File script.ps1 $Arg'
+param($storageConnectionString)
 $repo = "raw.githubusercontent.com/marckean/AVD-CSE-VDOT/main"
-$storageConnectionString = 'DefaultEndpointsProtocol=https;AccountName=20230710afpstg;AccountKey=RGxWBYsmFdGp7RhGeET2+X67T/cz3xno28CnTy2E6yeraSPMVr87ehYIoIsWHhD84lWToRVRAK1S+ASteV2Nzg==;EndpointSuffix=core.windows.net'
 $signalExe = "signal-desktop-win-6.25.0.exe"
 ##############################################################
 #  FSLogix setup CCDLocations
