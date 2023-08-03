@@ -36,6 +36,7 @@ Start-Process "$env:SystemRoot\System32\msiexec.exe" -ArgumentList "/i `"$($msi.
 
 ##############################################################
 #  Run the Virtual Desktop Optimization Tool (VDOT)
+#  Derived from https://github.com/Azure/RDS-Templates/tree/master/wvd-sh/arm-template-customization
 ##############################################################
 # https://github.com/The-Virtual-Desktop-Team/Virtual-Desktop-Optimization-Tool
 
