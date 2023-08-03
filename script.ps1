@@ -1,7 +1,42 @@
 # 'powershell.exe -ExecutionPolicy Bypass -File script.ps1 $Arg'
-param($storageConnectionString)
+param($storageConnectionString, $HPtoken)
 $repo = "raw.githubusercontent.com/marckean/AVD-CSE-VDOT/main"
 $signalExe = "signal-desktop-win-6.25.0.exe"
+
+
+##############################################################
+#  Register session hosts to a host pool
+#  https://learn.microsoft.com/en-us/azure/virtual-desktop/add-session-hosts-host-pool
+##############################################################
+$uris = @(
+    "https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RWrmXv" # RDAgent.Installer
+    "https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RWrxrH" # RDAgentBootLoader
+)
+
+$installers = @()
+foreach ($uri in $uris) {
+    $download = Invoke-WebRequest -Uri $uri -UseBasicParsing
+
+    $fileName = ($download.Headers.'Content-Disposition').Split('=')[1].Replace('"','')
+    $output = [System.IO.FileStream]::new("$env:temp\$fileName", [System.IO.FileMode]::Create)
+    $output.write($download.Content, 0, $download.RawContentLength)
+    $output.close()
+    $installers += $output.Name
+}
+
+foreach ($installer in $installers) {
+    Unblock-File -Path "$installer"
+}
+
+# To install the Remote Desktop Services Infrastructure Agent
+
+$msi = Get-ChildItem -Path $env:temp -Filter "*RDAgent.Installer*" | select -Unique
+msiexec /i $msi.name /quiet REGISTRATIONTOKEN=$HPtoken
+
+
+$msi = Get-ChildItem -Path $env:temp -Filter "*RDAgentBootLoader*" | select -Unique
+msiexec /i $msi.name /quiet
+
 ##############################################################
 #  FSLogix setup CCDLocations
 ##############################################################
