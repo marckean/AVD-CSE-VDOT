@@ -35,6 +35,22 @@ $msi = Get-ChildItem -Path $env:temp -Filter "*RDAgentBootLoader*" | select -Uni
 Start-Process "$env:SystemRoot\System32\msiexec.exe" -ArgumentList "/i `"$($msi.FullName)`" /quiet" -wait
 
 ##############################################################
+#  Run the Virtual Desktop Optimization Tool (VDOT)
+##############################################################
+# https://github.com/The-Virtual-Desktop-Team/Virtual-Desktop-Optimization-Tool
+
+# Download VDOT
+$URL = 'https://github.com/The-Virtual-Desktop-Team/Virtual-Desktop-Optimization-Tool/archive/refs/heads/main.zip'
+$ZIP = 'VDOT.zip'
+Invoke-WebRequest -Uri $URL -OutFile $ZIP -ErrorAction 'Stop'
+
+# Extract VDOT from ZIP archive
+Expand-Archive -LiteralPath $ZIP -Force -ErrorAction 'Stop'
+    
+# Run VDOT
+& .\VDOT\Virtual-Desktop-Optimization-Tool-main\Windows_VDOT.ps1 -Optimizations All -Verbose -AcceptEula
+
+##############################################################
 #  FSLogix setup CCDLocations
 ##############################################################
 Write-Host 'Configuring FSLogix'
@@ -113,17 +129,7 @@ sc.exe config appidsvc start=auto
 Set-ItemProperty "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name MaxDisconnectionTime -Type 'DWord' -Value 300000 -force
 
 ##############################################################
-#  Run the Virtual Desktop Optimization Tool (VDOT)
+#  Restart
 ##############################################################
-# https://github.com/The-Virtual-Desktop-Team/Virtual-Desktop-Optimization-Tool
 
-# Download VDOT
-$URL = 'https://github.com/The-Virtual-Desktop-Team/Virtual-Desktop-Optimization-Tool/archive/refs/heads/main.zip'
-$ZIP = 'VDOT.zip'
-Invoke-WebRequest -Uri $URL -OutFile $ZIP -ErrorAction 'Stop'
-
-# Extract VDOT from ZIP archive
-Expand-Archive -LiteralPath $ZIP -Force -ErrorAction 'Stop'
-    
-# Run VDOT
-& .\VDOT\Virtual-Desktop-Optimization-Tool-main\Windows_VDOT.ps1 -AcceptEULA -Restart
+Restart-Computer -Force
