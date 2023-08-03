@@ -1,8 +1,7 @@
 # 'powershell.exe -ExecutionPolicy Bypass -File script.ps1 $Arg'
 param($storageConnectionString, $HPtoken)
 $repo = "raw.githubusercontent.com/marckean/AVD-CSE-VDOT/main"
-$signalExe = "signal-desktop-win-6.25.0.exe"
-
+$signalExe = "signal-desktop-win-6.27.1.exe"
 
 ##############################################################
 #  Register session hosts to a host pool
