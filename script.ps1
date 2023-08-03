@@ -28,13 +28,11 @@ foreach ($installer in $installers) {
 }
 
 # To install the Remote Desktop Services Infrastructure Agent
-
 $msi = Get-ChildItem -Path $env:temp -Filter "*RDAgent.Installer*" | select -Unique
-msiexec /i $msi.name /quiet REGISTRATIONTOKEN=$HPtoken
-
+Start-Process $env:SystemRoot\System32\msiexec.exe -ArgumentList "/i `"$($msi.FullName)`" /quiet REGISTRATIONTOKEN=$($HPtoken)" -wait
 
 $msi = Get-ChildItem -Path $env:temp -Filter "*RDAgentBootLoader*" | select -Unique
-msiexec /i $msi.name /quiet
+Start-Process "$env:SystemRoot\System32\msiexec.exe" -ArgumentList "/i `"$($msi.FullName)`" /quiet" -wait
 
 ##############################################################
 #  FSLogix setup CCDLocations
