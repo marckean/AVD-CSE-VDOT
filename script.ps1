@@ -97,9 +97,8 @@ Remove-Item "$path\$exeName" -Force -ErrorAction SilentlyContinue
 if(!(Test-Path $path)){New-Item -Path $path -ItemType Directory}
 Start-BitsTransfer -Source $exePath -Destination $path
 
-$Command = "$path\$exeName /S"
-Invoke-Expression $Command -Verbose
-Start-Sleep -Seconds 60
+Start-Process "$path\$exeName" -ArgumentList "/S" -wait
+
 Copy-Item -Path "$env:USERPROFILE\AppData\Local\Programs\signal-desktop\*" -Destination "$env:ProgramFiles\signal-desktop" -Recurse -Force
 
 ##############################################################
