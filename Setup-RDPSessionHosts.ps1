@@ -6,10 +6,7 @@ param(
     [string]$HPtoken,
 
     [Parameter(Mandatory = $false)]
-    [string]$repo = "raw.githubusercontent.com/marckean/AVD-CSE-VDOT/main",
-
-    [Parameter(Mandatory = $false)]
-    [string]$signalExe = "signal-desktop-win-6.27.1.exe"
+    [string]$repo = "raw.githubusercontent.com/marckean/AVD-CSE-VDOT/main"
 )
 
 ##############################################################
