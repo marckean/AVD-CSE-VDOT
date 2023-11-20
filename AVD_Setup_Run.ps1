@@ -1,4 +1,4 @@
-$signalExe = "signal-desktop-win-6.27.1.exe"
+$signalExe = "signal-desktop-win-6.39.0.exe"
 
 ##############################################################
 #  Install Signal
@@ -8,7 +8,8 @@ $exeName = $signalExe
 $exePath = "https://updates.signal.org/desktop/$exeName"
 Remove-Item "$path\$exeName" -Force -ErrorAction SilentlyContinue
 if (!(Test-Path $path)) { New-Item -Path $path -ItemType Directory }
-Start-BitsTransfer -Source $exePath -Destination $path
+#Start-BitsTransfer -Source $exePath -Destination $path
+Invoke-WebRequest -Uri $exePath -OutFile "$path\$exeName"
 Start-Process "$path\$exeName" -ArgumentList "/S" -wait
 # Find where Signal is installed and copy it to the Program Files folder
 $userProfiles = (Get-ChildItem -Path "$env:SystemDrive\Users")
