@@ -73,4 +73,25 @@ New-ItemProperty -Path 'HKLM:\SOFTWARE\FSLogix\Profiles' -Name 'ReAttachRetryCou
 New-ItemProperty -Path 'HKLM:\SOFTWARE\FSLogix\Profiles' -Name 'SizeInMBs' -Value 30000 -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\FSLogix\Profiles' -Name 'VolumeType' -Value 'VHDX' -Force
 
+##############################################################
+#  Run the Virtual Desktop Optimization Tool (VDOT)
+#  Derived from https://github.com/Azure/RDS-Templates/tree/master/wvd-sh/arm-template-customization
+##############################################################
+# https://github.com/The-Virtual-Desktop-Team/Virtual-Desktop-Optimization-Tool
 
+# Download VDOT
+$URL = $VDOT
+$ZIP = 'VDOT.zip'
+Invoke-WebRequest -Uri $URL -OutFile $ZIP -ErrorAction 'Stop'
+
+# Extract VDOT from ZIP archive
+Expand-Archive -LiteralPath $ZIP -Force -ErrorAction 'Stop'
+    
+# Run VDOT
+& .\VDOT\Virtual-Desktop-Optimization-Tool-main\Windows_VDOT.ps1 -Optimizations All -Verbose -AcceptEula
+
+##############################################################
+#  Remote Desktop Session Host > Session Time Limits
+##############################################################
+# Set to 15 minutes
+Set-ItemProperty "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name MaxDisconnectionTime -Type 'DWord' -Value 300000 -force
