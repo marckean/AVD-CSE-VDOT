@@ -21,6 +21,9 @@ $uris = @(
     "https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RWrxrH" # RDAgentBootLoader
 )
 
+# Registering the PowerShell event provider on Windows
+& $PSHOME\RegisterManifest.ps1
+
 $installers = @()
 foreach ($uri in $uris) {
     $download = Invoke-WebRequest -Uri $uri -UseBasicParsing
@@ -137,3 +140,6 @@ sc.exe config appidsvc start=auto
 ##############################################################
 # Set to 15 minutes
 Set-ItemProperty "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name MaxDisconnectionTime -Type 'DWord' -Value 300000 -force
+
+# Unregistering the PowerShell event provider on Windows
+& $PSHOME\RegisterManifest.ps1 -Unregister
