@@ -16,6 +16,7 @@
                 <FilePathCondition Path="%SYSTEM32%\conhost.exe" />
                 <FilePathCondition Path="%SYSTEM32%\csrss.exe" />
                 <FilePathCondition Path="%SYSTEM32%\dllhost.exe" />
+                <FilePathCondition Path="%SYSTEM32%\WindowsPowerShell\v1.0\powershell.exe"" />
                 <FilePathCondition Path="%SYSTEM32%\sc.exe" />
                 <FilePathCondition Path="%SYSTEM32%\auditpol.exe" />
                 <FilePathCondition Path="*signal-desktop-win-*.exe" />
